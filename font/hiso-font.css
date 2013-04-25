@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'hiso_dark';
+    src: url('hisodark-regular.eot');
+    src: url('hisodark-regular.eot?#iefix') format('embedded-opentype'),
+         url('hisodark-regular.woff') format('woff'),
+         url('hisodark-regular.ttf') format('truetype'),
+         url('hisodark-regular.svg#hiso_darkregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
