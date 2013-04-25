@@ -1,5 +1,11 @@
 {
   "name": "HisoFont",
-  "version": "0.0.2",
-  "description": "Isometric by Hiswe"
+  "version": "0.0.3",
+  "description": "Isometric by Hiswe",
+  "keywords": [
+    "isomteric",
+    "font",
+    "icon"
+  ],
+  "main": "font/hiso-font.css"
 }
