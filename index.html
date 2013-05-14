@@ -7,64 +7,74 @@
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Hiso</h1>
-    <h3>an isometric font by hiswe</h3>
-    <ul class="letters">
-      <li data-content="a">a</li>
-      <li data-content="b">b</li>
-      <li data-content="c">c</li>
-      <li data-content="d">d</li>
-      <li data-content="e">e</li>
-      <li data-content="f">f</li>
-      <li data-content="g">g</li>
-      <li data-content="h">h</li>
-      <li data-content="i">i</li>
-      <li data-content="j">j</li>
-      <li data-content="k">k</li>
-      <li data-content="l">l</li>
-      <li data-content="m">m</li>
-      <li data-content="n">n</li>
-      <li data-content="o">o</li>
-      <li data-content="p">p</li>
-      <li data-content="q">q</li>
-      <li data-content="r">r</li>
-      <li data-content="s">s</li>
-      <li data-content="t">t</li>
-      <li data-content="u">u</li>
-      <li data-content="v">v</li>
-      <li data-content="w">w</li>
-      <li data-content="x">x</li>
-      <li data-content="y">y</li>
-      <li data-content="z">z</li>
-    </ul>
-    <ul class="numbers">
-      <li data-content="1">1</li>
-      <li data-content="2">2</li>
-      <li data-content="3">3</li>
-      <li data-content="4">4</li>
-      <li data-content="5">5</li>
-      <li data-content="6">6</li>
-      <li data-content="7">7</li>
-      <li data-content="8">8</li>
-      <li data-content="9">9</li>
-      <li data-content="0">0</li>
-    </ul>
-    <ul class="icons">
-      <li data-content="&#9993;">&#9993;</li>
-      <li data-content="&#9742;">&#9742;</li>
-      <li data-content="&#8505;">&#8505;</li>
-      <li data-content="&#9638;">&#9638;</li>
-      <li data-content="&#9641;">&#9641;</li>
-      <li data-content="&#9829;">&#9829;</li>
-      <li data-content="&#9965;">&#9965;</li>
-      <li data-content="&#8592;">&#8592;</li>
-      <li data-content="&#8594;">&#8594;</li>
-      <li data-content="&#9998;" class="big">&#9998;</li>
-      <li data-content="&#10000;">&#10000;</li>
-      <li data-content="&#9999;" class="big">&#9999;</li>
-      <li data-content="&#9874;" class="big">&#9874;</li>
-    </ul>
+  <input type="radio" id="dark" name="fontFamily" value="dark"  checked />
+  <input type="radio" id="bright" name="fontFamily" value="bright"  />
+  <input type="radio" id="plain" name="fontFamily" value="plain" />
+  <div class="main">
+    <div class="container">
+      <h1>Hiso</h1>
+      <h3>an isometric font by hiswe</h3>
+      <nav>
+        <label for="dark">Dark</label>
+        <label for="bright">Bright</label>
+        <label for="plain">Plain</label>
+      </nav>
+      <ul class="letters">
+        <li data-content="a">a</li>
+        <li data-content="b">b</li>
+        <li data-content="c">c</li>
+        <li data-content="d">d</li>
+        <li data-content="e">e</li>
+        <li data-content="f">f</li>
+        <li data-content="g">g</li>
+        <li data-content="h">h</li>
+        <li data-content="i">i</li>
+        <li data-content="j">j</li>
+        <li data-content="k">k</li>
+        <li data-content="l">l</li>
+        <li data-content="m">m</li>
+        <li data-content="n">n</li>
+        <li data-content="o">o</li>
+        <li data-content="p">p</li>
+        <li data-content="q">q</li>
+        <li data-content="r">r</li>
+        <li data-content="s">s</li>
+        <li data-content="t">t</li>
+        <li data-content="u">u</li>
+        <li data-content="v">v</li>
+        <li data-content="w">w</li>
+        <li data-content="x">x</li>
+        <li data-content="y">y</li>
+        <li data-content="z">z</li>
+      </ul>
+      <ul class="numbers">
+        <li data-content="1">1</li>
+        <li data-content="2">2</li>
+        <li data-content="3">3</li>
+        <li data-content="4">4</li>
+        <li data-content="5">5</li>
+        <li data-content="6">6</li>
+        <li data-content="7">7</li>
+        <li data-content="8">8</li>
+        <li data-content="9">9</li>
+        <li data-content="0">0</li>
+      </ul>
+      <ul class="icons">
+        <li data-content="U+2709">&#x2709;</li> <!-- Mail -->
+        <li data-content="U+260E">&#x260E;</li> <!-- Phone -->
+        <li data-content="U+2139">&#x2139;</li> <!-- Info -->
+        <li data-content="U+25A6">&#x25A6;</li> <!-- Website -->
+        <li data-content="U+25A9">&#x25A9;</li> <!-- Education -->
+        <li data-content="U+2764">&#x2764;</li> <!-- Heart -->
+        <li data-content="U+26ED">&#x26ED;</li> <!-- Factory -->
+        <li data-content="U+27F5">&#x27F5;</li> <!-- Left arrow -->
+        <li data-content="U+27F6">&#x27F6;</li> <!-- Right arrow -->
+        <li data-content="U+270E" class="big">&#x270E;</li> <!-- Pen left -->
+        <li data-content="U+2710">&#x2710;</li> <!-- Pen bottom -->
+        <li data-content="U+270F">&#x270F;</li> <!-- Pen right-->
+        <li data-content="U+2692" class="big">&#x2692;</li> <!-- Hammer -->
+      </ul>
+    </div>
   </div>
 </body>
 </html>

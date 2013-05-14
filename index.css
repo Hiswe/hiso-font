@@ -1,6 +1,16 @@
 html, body {
-  background: #FD006C;
+  margin: 0; padding: 0;
   font-family: helvetica, arial, sans-serif;
+}
+
+.main {
+  background: #FD006C;
+  padding: 1em;
+  -webkit-transition: background .5s;
+  -moz-transition: background .5s;
+  -ms-transition: background .5s;
+  -o-transition: background .5s;
+  transition: background .5s;
 }
 
 .container {
@@ -12,7 +22,7 @@ h1, h3 {
   font-weight: normal;
 }
 h1 {
-  font-family: 'hiso_dark';
+  font-family: 'hiso-dark';
   font-size: 10em;
   line-height: 100%;
   text-align: center;
@@ -24,12 +34,12 @@ h3 {
   letter-spacing: .5em;
   color: rgba(255,255,255,1);
   text-shadow: -1px -1px 0 rgba(0,0,0,0.75);
-  margin-bottom: 2em;
+  margin-bottom: .5em;
 }
 ul {
   margin: 0 auto 3em;
   padding: 2.5em 0 0;
-  font-family: 'hiso_dark';
+  font-family: 'hiso-dark';
   position: relative;
 }
 ul::before {
@@ -37,6 +47,7 @@ ul::before {
   display: block;
   text-align: left;
   font-size: 2em;
+  line-height: 100%;
   position: absolute;
   left: 0; top: 0;
   color: #170034;
@@ -85,4 +96,95 @@ li::before {
 }
 .big {
   width: 2.03em;
+}
+
+/* Controls */
+
+input { display: none;}
+input { position: absolute;  top: 0;}
+input:nth-child(1) { left: 0; }
+input:nth-child(2) { left: 10px; }
+input:nth-child(3) { left: 20px; }
+
+
+nav {
+  display: block;
+  margin: 0 6.25em 2em;
+  text-align: center;
+}
+
+label {
+  display: inline-block;
+  width: 30%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;sz
+  text-align: center;
+  vertical-align: top;
+  font-weight: bold;
+  padding: .5em;
+  cursor: pointer;
+
+  background: -webkit-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background: -moz-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background: -ms-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background: -o-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+
+  background-position: 1px -200px;
+  background-repeat: repeat-x;
+
+  -webkit-transition: color .5s, background-position .75s;
+  -moz-transition: color .5s, background-position .75s;
+  -ms-transition: color .5s, background-position .75s;
+  -o-transition: color .5s, background-position .75s;
+  transition: color .5s, background-position .75s;
+}
+label:hover {
+  color: white;
+}
+
+/* Dark font selected */
+#dark:checked ~ .main {
+  background: #FD006C;
+}
+
+/* Light font selected */
+#bright:checked ~ .main {
+  background: #6d003b;
+}
+#bright:checked ~ .main h1,
+#bright:checked ~ .main ul {
+  font-family: "hiso-bright";
+  -webkit-font-smoothing: antialiased;
+  color: #FD006C;
+}
+#bright:checked ~ .main li {
+  background: #FD006C;
+  color: white;
+}
+#bright:checked ~ .main ul::before {
+  color: #FD006C;
+}
+
+/* Plain font selected */
+#plain:checked ~ .main {
+  background: #0090d8;
+}
+#plain:checked ~ .main li {
+    font-family: "hiso-plain";
+}
+
+/* Labels */
+#dark:checked ~ .main label[for="dark"],
+#bright:checked ~ .main label[for="bright"],
+#plain:checked ~ .main label[for="plain"] {
+  color: white;
+  background-position: 100px;
+}
+
+/* Remove icons for non supporting fonts */
+#bright:checked ~ .main .icons,
+#plain:checked ~ .main .icons {
+  display: none;
 }
