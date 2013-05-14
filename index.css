@@ -106,7 +106,6 @@ input:nth-child(1) { left: 0; }
 input:nth-child(2) { left: 10px; }
 input:nth-child(3) { left: 20px; }
 
-
 nav {
   display: block;
   margin: 0 6.25em 2em;
