@@ -1,5 +1,5 @@
 # Hiso Font
-## Isometric 3D font 0.1.1
+## Isometric 3D font 0.1.2
 Pictogram and font can be viewed at :
 
 - [hiswe.github.io/hiso-font](http://hiswe.github.io/hiso-font)
@@ -49,6 +49,19 @@ In your HTML you just have to:
 <span class="hicon mail"></span>
 ```
 The full list of icons class are available [here](https://github.com/Hiswe/hiso-font/blob/master/font/hicon.css).
+
+## Release History
+	
+- **0.1.2** 
+  - Fix the "h" in dark version
+  - Change unicode for "website" icon and add a mirrored version
+  - Remove svg files
+- **before** — Initial comits and stuff
+
+## Issues
+
+- Dark family seems to have a different baseline than the other fonts… 
+
 
 ## Contact
 - Email: hiswehalya@gmail.com

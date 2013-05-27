@@ -1,17 +1,18 @@
 .hicon {
-  font-family: "hiso-dark", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "hiso-dark";
 }
 
-.hicon.mail:before        { content: "\2709"; }
-.hicon.phone:before       { content: "\260E"; }
-.hicon.info:before        { content: "\2139"; }
-.hicon.website:before     { content: "\25A6"; }
-.hicon.education:before   { content: "\25A9"; }
-.hicon.heart:before       { content: "\2764"; }
-.hicon.factory:before     { content: "\26ED"; }
-.hicon.arrowLeft:before   { content: "\27F5"; }
-.hicon.arrowRight:before  { content: "\27F6"; }
-.hicon.penLeft:before     { content: "\270E"; }
-.hicon.penBottom:before   { content: "\2710"; }
-.hicon.penRight:before    { content: "\270F"; }
-.hicon.hammer:before      { content: "\2692"; }
+.hicon.mail:before              { content: "\2709"; }
+.hicon.phone:before             { content: "\260E"; }
+.hicon.info:before              { content: "\2139"; }
+.hicon.website:before           { content: "\25A8"; }
+.hicon.website-reversed:before  { content: "\25A7"; }
+.hicon.education:before         { content: "\25A9"; }
+.hicon.heart:before             { content: "\2764"; }
+.hicon.factory:before           { content: "\26ED"; }
+.hicon.arrowLeft:before         { content: "\27F5"; }
+.hicon.arrowRight:before        { content: "\27F6"; }
+.hicon.penLeft:before           { content: "\270E"; }
+.hicon.penBottom:before         { content: "\2710"; }
+.hicon.penRight:before          { content: "\270F"; }
+.hicon.hammer:before            { content: "\2692"; }
