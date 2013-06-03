@@ -7,8 +7,6 @@
 .hicon.info:before              { content: "\2139"; }
 .hicon.website:before           { content: "\25A8"; }
 .hicon.website-reversed:before  { content: "\25A7"; }
-.hicon.education:before         { content: "\25A9"; }
-.hicon.heart:before             { content: "\2764"; }
 .hicon.factory:before           { content: "\26ED"; }
 .hicon.arrowLeft:before         { content: "\27F5"; }
 .hicon.arrowRight:before        { content: "\27F6"; }
