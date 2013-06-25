@@ -1,5 +1,5 @@
 # Hiso Font
-## Isometric 3D font 0.2.0
+## Isometric 3D font 0.2.1
 Pictogram and font can be viewed at :
 
 - [hiswe.github.io/hiso-font](http://hiswe.github.io/hiso-font)
@@ -53,6 +53,8 @@ The full list of icons class are available [here](https://github.com/Hiswe/hiso-
 ## Release History
 
 
+- **0.2.1**
+  - Shrink HisoPlain to fix aliasing issues when this font is used as a background for another Hiso typo
 - **0.2.0**
   - Add icons to every font
   - Remove Heart &amp; Education icon

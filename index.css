@@ -183,11 +183,11 @@ label {
 label:hover {
   color: white;
 
-  background: -webkit-linear-gradient(#390293, #24015e);
-  background: -moz-linear-gradient(#390293, #24015e);
-  background: -ms-linear-gradient(#390293, #24015e);
-  background: -o-linear-gradient(#390293, #24015e);
-  background: linear-gradient(#390293, #24015e);
+  background: -webkit-linear-gradient(#444, #222);
+  background: -moz-linear-gradient(#444, #222);
+  background: -ms-linear-gradient(#444, #222);
+  background: -o-linear-gradient(#444, #222);
+  background: linear-gradient(#444, #222);
 }
 
 /* Dark font selected */
@@ -237,22 +237,61 @@ label:hover {
   -o-transform: translate(-4px, -2px);
   transform: translate(-4px, -2px);
 
-  background: -webkit-linear-gradient(#390293, #24015e);
-  background: -moz-linear-gradient(#390293, #24015e);
-  background: -ms-linear-gradient(#390293, #24015e);
-  background: -o-linear-gradient(#390293, #24015e);
-  background: linear-gradient(#390293, #24015e);
+  background: -webkit-linear-gradient(#444, #222);
+  background: -moz-linear-gradient(#444, #222);
+  background: -ms-linear-gradient(#444, #222);
+  background: -o-linear-gradient(#444, #222);
+  background: linear-gradient(#444, #222);
 
-  box-shadow: 1px 0 0 0 #180040,
-    0 1px 0 0 #1c0149,
-    2px 1px 0 0 #180040,
-    1px 2px 0 0 #1c0149,
-    3px 2px 0 0 #180040,
-    4px 2px 0 0 #0d0022
+  box-shadow: 1px 0 0 0 #111,
+    0 1px 0 0 #000,
+    2px 1px 0 0 #111,
+    1px 2px 0 0 #000,
+    3px 2px 0 0 #111,
+    4px 2px 0 0 #000
 }
 
-/* Remove icons for non supporting fonts */
-/*#bright:checked ~ .main .icons,
-#plain:checked ~ .main .icons {
-  display: none;
-}*/
+/* Github link */
+aside {
+  position: absolute;
+  top: 0; right: 0;
+  width: 15em;
+  height: 11.5em;
+  overflow: hidden
+}
+
+aside a {
+  display: block;
+  background: #444;
+  color: #222;
+  font-weight: bold;
+  text-shadow: 1px 1px rgba(255,255,255,0.15);
+  text-decoration: none;
+  margin-top: 10em;
+  padding: .25em 1em;
+  width: 100%;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transform-origin: top right;
+  -moz-transform-origin: top right;
+  -ms-transform-origin: top right;
+  -o-transform-origin: top right;
+  transform-origin: top right;
+  -webkit-transition: background .25s;
+  -moz-transition: background .25s;
+  -ms-transition: background .25s;
+  -o-transition: background .25s;
+  transition: background .25s;
+}
+aside a:hover {
+  background: #555;
+}
+aside span {
+  border: dashed 1px rgba(0, 0, 0, 0.5);
+  border-width: 1px 0;
+  display: block;
+  padding: .25em 0;
+}
