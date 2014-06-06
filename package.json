@@ -1,0 +1,39 @@
+{
+  "name": "hiso-font",
+  "version": "0.2.2",
+  "description": "Isometric typo",
+  "main": "font/hiso-font.css",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hiswe/hiso-font.git"
+  },
+  "keywords": [
+    "font",
+    "isometric"
+  ],
+  "author": "Hiswe",
+  "license": "CC BY-NC 3.0",
+  "bugs": {
+    "url": "https://github.com/Hiswe/hiso-font/issues"
+  },
+  "homepage": "https://github.com/Hiswe/hiso-font",
+  "devDependencies": {
+    "gulp": "^3.7.0",
+    "connect-livereload": "^0.4.0",
+    "express": "^4.4.1",
+    "gulp-open": "^0.2.8",
+    "gulp-livereload": "^2.0.0",
+    "tiny-lr": "0.0.7",
+    "gulp-wait": "0.0.2",
+    "gulp-rename": "^1.2.0",
+    "gulp-iconfont": "0.0.12",
+    "event-stream": "^3.1.5",
+    "gulp-clone": "^1.0.0",
+    "gulp-filter": "^0.4.1",
+    "lodash": "^2.4.1",
+    "gulp-consolidate": "^0.1.2"
+  }
+}
