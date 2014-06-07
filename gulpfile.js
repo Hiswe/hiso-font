@@ -9,11 +9,14 @@ var rename      = require('gulp-rename');
 var iconfont    = require('gulp-iconfont');
 var lazypipe    = require('lazypipe');
 var gulpFilter  = require('gulp-filter');
+var unorm       = require('unorm');
 // See this for categories
 // http://unicode.org/Public/UNIDATA/UnicodeData.txt
 var unicodeList = _.merge(
                     require('unicode/category/Po'),
+                    require('unicode/category/Nd'),
                     require('unicode/category/Sm'),
+                    require('unicode/category/Lu'),
                     require('unicode/category/So'),
                     require('unicode/category/Pd'),
                     require('unicode/category/Ll')
@@ -34,8 +37,8 @@ var connectLr   = require('connect-livereload');
 // with this format u0031-name.svg
 // https://github.com/nfroidure/gulp-svgicons2svgfont/blob/master/src/index.js#L61
 function cleanName(path) {
-  // console.log(path.basename);
-  var name = path.basename;
+  var name = unorm.nfc(path.basename);
+  // console.log(name);
   if (/^.*_(.)$/.test(name)) {
     path.basename = prependUnicode(name);
   }
@@ -45,31 +48,24 @@ function cleanName(path) {
   if (/^.*_p\d+-.+$/.test(name)) {
     path.basename = privateUse(name);
   }
-
-  // console.log(path.basename);
-
 }
 
 function prependUnicode(name) {
   var matches = /^.*_(.)$/.exec(name);
-  name = 'u' + getHexCode(matches[1]) + '-' + matches[1];
+  var hexCode = getHexCode(matches[1]);
+  name = 'u' + hexCode + '-' + findUnicodeName(hexCode);
   return name
 }
 
 function cleanUnicode(name) {
   var matches = /^.*_([A-Za-z0-9]{4})$/.exec(name);
-  var descriptionKey = _.findKey(unicodeList, {value: matches[1].toUpperCase()});
-  if (typeof unicodeList[descriptionKey] === 'undefined') {
-    console.log('no unicode for:', matches[1]);
-  } else {
-    name = 'u' + matches[1] + '-' + unicodeList[descriptionKey].name;
-  }
+  name = 'u' + matches[1] + '-' + findUnicodeName(matches[1]);
   return name;
 }
 
 function privateUse(name) {
   var matches = /^.*_p\d+-(.+)$/.exec(name);
-  return matches[1];
+  return 'HISWE ' + matches[1].toUpperCase();
 }
 
 function getHexCode(text) {
@@ -79,13 +75,21 @@ function getHexCode(text) {
   return codeHex
 }
 
+function findUnicodeName(unicode) {
+  var descriptionKey = _.findKey(unicodeList, {value: unicode.toUpperCase()});
+  if (typeof unicodeList[descriptionKey] === 'undefined') {
+    console.log('no unicode for:', unicode);
+  }
+  return unicodeList[descriptionKey].name
+}
+
 function isLetter(file) {
-  // console.log(file.path + '');
-  // if (!/_[a-z\u00E0-\u00FF\u00EF]\.svg$/i.test(file.path+'')) {
-  //   console.log(file.path)
-  // }
-  // console.log(file.path);
-  return /_[a-z]\.svg$/i.test(file.path)
+  var fileName = /([^\/]*)\.svg$/.exec(file.path)[1]
+  // Has to normalize name as in ES5 ï.length could be 2 (i¨)
+  // More on this in:
+  // http://mathiasbynens.be/notes/javascript-unicode
+  fileName = unorm.nfc(fileName);
+  return /_[a-zï]$/i.test(fileName)
 }
 
 gulp.task('unicode', function (cb) {
@@ -96,10 +100,6 @@ gulp.task('unicode', function (cb) {
   // '✉☎ℹ▨▧⛭⟵⟶✎✐✏⚒'.split('').forEach(function(letter){
   //   console.log(letter, '    ', getHexCode(letter));
   // });
-  console.log('\n');
-  'ï'.split('').forEach(function(letter){
-    console.log(letter, '    ', getHexCode(letter));
-  });
   cb();
 })
 
@@ -137,8 +137,8 @@ gulp.task('build', function(){
     .pipe(rename(cleanName))
     .pipe(
       iconfont({
-        fontName: 'hiso-dark', // required
-        appendCodepoints: false // recommended option to true
+        fontName: 'hiso-dark'// required
+        // , descent: 5000
       })
       .on('codepoints', function(codepoints, options) { onCodePoints('dst/dark', options) }))
     .pipe(gulp.dest('dst/dark'))
