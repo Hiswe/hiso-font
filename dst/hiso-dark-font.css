@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'hiso-dark';
+    src: url('./hiso-dark.eot');
+    src: url('./hiso-dark.eot?#iefix') format('eot'),
+        url('./hiso-dark.woff') format('woff'),
+        url('./hiso-dark.ttf') format('truetype'),
+        url('./hiso-dark.svg#hiso-dark') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

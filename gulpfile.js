@@ -3,6 +3,8 @@
 var _           = require('lodash');
 var es          = require('event-stream');
 var gulp        = require('gulp');
+var args        = require('yargs').argv;
+var bump        = require('gulp-bump');
 var wait        = require('gulp-wait');
 var clone       = require('gulp-clone');
 var unorm       = require('unorm');
@@ -34,20 +36,22 @@ var connectLr   = require('connect-livereload');
 // UTILITIES
 /////////
 
+var bumpSrc = ['package.json', 'bower.json'];
+
+gulp.task('bump', function () {
+  if (args.minor) return gulp.src(bumpSrc).pipe(bump({type:'minor'})).pipe(gulp.dest('./'));
+  if (args.major) return gulp.src(bumpSrc).pipe(bump({type:'minor'})).pipe(gulp.dest('./'));
+  return gulp.src(bumpSrc).pipe(bump()).pipe(gulp.dest('./'));
+});
+
 // You can specify which unicode you're aiming in the name
-// with this format u0031-name.svg
+// with this file format: u0031-name.svg
 // https://github.com/nfroidure/gulp-svgicons2svgfont/blob/master/src/index.js#L61
 function cleanName(path) {
   var name = unorm.nfc(path.basename);
-  if (/^.*_(.)$/.test(name)) {
-    path.basename = prependUnicode(name);
-  }
-  if (/^.*_[A-Za-z0-9]{4}$/.test(name)) {
-    path.basename = cleanUnicode(name);
-  }
-  if (/^.*_p\d+-.+$/.test(name)) {
-    path.basename = privateUse(name);
-  }
+  if (/^.*_(.)$/.test(name)) path.basename = prependUnicode(name);
+  if (/^.*_[A-Za-z0-9]{4}$/.test(name)) path.basename = cleanUnicode(name);
+  if (/^.*_p\d+-.+$/.test(name)) path.basename = privateUse(name);
 }
 
 function prependUnicode(name) {
@@ -222,3 +226,6 @@ gulp.task('server', ['express'], function(){
 /////////
 // DOC
 /////////
+
+// none for now :P
+

@@ -1,11 +1,20 @@
 {
   "name": "HisoFont",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Isometric font by Hiswe",
   "keywords": [
     "isometric",
     "font",
     "icon"
   ],
-  "main": "font/hiso-font.css"
+  "main": [
+    "dst/hiso-dark-font.css",
+    "dst/hiso-bright-font.css",
+    "dst/hiso-plain-font.css"
+  ],
+  "ignore": [
+    "node_modules",
+    "src",
+    ".gitignore"
+  ]
 }

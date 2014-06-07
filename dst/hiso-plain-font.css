@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'hiso-plain';
+    src: url('./hiso-plain.eot');
+    src: url('./hiso-plain.eot?#iefix') format('eot'),
+        url('./hiso-plain.woff') format('woff'),
+        url('./hiso-plain.ttf') format('truetype'),
+        url('./hiso-plain.svg#hiso-plain') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
