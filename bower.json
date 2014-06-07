@@ -7,14 +7,28 @@
     "font",
     "icon"
   ],
+  "homepage": "http://hiswe.github.io/hiso-font",
   "main": [
-    "dst/hiso-dark-font.css",
     "dst/hiso-bright-font.css",
-    "dst/hiso-plain-font.css"
+    "dst/hiso-bright.eot",
+    "dst/hiso-bright.svg",
+    "dst/hiso-bright.ttf",
+    "dst/hiso-bright.woff",
+    "dst/hiso-dark-font.css",
+    "dst/hiso-dark.eot",
+    "dst/hiso-dark.svg",
+    "dst/hiso-dark.ttf",
+    "dst/hiso-dark.woff",
+    "dst/hiso-plain-font.css",
+    "dst/hiso-plain.eot",
+    "dst/hiso-plain.svg",
+    "dst/hiso-plain.ttf",
+    "dst/hiso-plain.woff"
   ],
   "ignore": [
     "node_modules",
     "src",
-    ".gitignore"
+    ".*",
+    "font"
   ]
 }
