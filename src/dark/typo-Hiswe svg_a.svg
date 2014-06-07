@@ -10,8 +10,9 @@
 <g id="Icons_1_">
 </g>
 <g id="Dark">
-	<path fill="#000101" d="M45,81l36-18v36L45,81z M81,27v36L45,45v36v36L9,99V27L45,9L81,27z M74.29,27L45,12.35l-33,16.5v68.3l30,15
-		v-69L74.29,27z"/>
+	<path fill="#000101" d="M36,81l36-18v36L36,81z M72,27v36L36,45v36v36L0,99V27L36,9L72,27z M65.29,27L36,12.35L3,28.85v68.3l30,15
+		v-69L65.29,27z"/>
+	<text transform="matrix(1 0 0 1 0 -18)" fill="#F80071" font-family="'MyriadPro-Regular'" font-size="72">Letters 1-16</text>
 </g>
 <g id="Bright">
 </g>

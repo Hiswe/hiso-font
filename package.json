@@ -35,6 +35,7 @@
     "gulp-filter": "^0.4.1",
     "lodash": "^2.4.1",
     "gulp-consolidate": "^0.1.2",
-    "lazypipe": "^0.2.1"
+    "lazypipe": "^0.2.1",
+    "unicode": "^0.6.0"
   }
 }

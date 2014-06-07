@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="90px"
-	 height="126px" viewBox="0 0 90 126" enable-background="new 0 0 90 126" xml:space="preserve">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="54px"
+	 height="126px" viewBox="0 0 54 126" enable-background="new 0 0 54 126" xml:space="preserve">
 <g id="BG">
 </g>
 <g id="Base">
@@ -10,8 +10,8 @@
 <g id="Icons_1_">
 </g>
 <g id="Dark">
-	<path fill="#000101" d="M30,40.856l30,14.999v56.292L30,97.147V40.856 M27,36.002v63L63,117V54L27,36.002L27,36.002z M30,13.858
-		l30,14.998v11.292L30,25.15V13.858 M27,9.004v18l36,17.998v-18L27,9.004L27,9.004z"/>
+	<path fill="#000101" d="M3,40.856l30,14.999v56.292L3,97.147V40.856 M0,36.002v63L36,117V54L0,36.002L0,36.002z M3,13.858
+		l30,14.998v11.292L3,25.15V13.858 M0,9.004v18l36,17.998v-18L0,9.004L0,9.004z"/>
 </g>
 <g id="Bright">
 </g>
