@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>Hiso Font</title>
+  <!-- <link rel="stylesheet" href="font/hiso-font.css"> -->
+  <link rel="stylesheet" href="dst/hiso-dark-font.css">
+  <link rel="stylesheet" href="dst/hiso-bright-font.css">
+  <link rel="stylesheet" href="dst/hiso-plain-font.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <input type="radio" id="dark" name="fontFamily" value="dark"  checked />
+  <input type="radio" id="bright" name="fontFamily" value="bright"  />
+  <input type="radio" id="plain" name="fontFamily" value="plain" />
+  <div class="main">
+    <div class="container">
+      <h1>
+        <span data-letter="H">H</span><span data-letter="I">I</span><span data-letter="S">S</span><span data-letter="O">O</span>
+      </h1>
+      <strong>an isometric font by hiswe</strong>
+      <aside>
+        <a href="https://github.com/Hiswe/hiso-font"><span>Fork me on github</span></a>
+      </aside>
+      <nav>
+        <label for="dark">Dark</label>
+        <label for="bright">Bright</label>
+        <label for="plain">Plain</label>
+      </nav>
+      <h2>Letters</h2>
+      <ul>
+      <% _.each( codepoints.letter, function( codepoint ){ %>
+        <li data-content="<%- codepoint.letter %>">
+            <%- codepoint.letter %>
+        </li>
+      <% }); %>
+      </ul>
+      <h2>Digits</h2>
+      <ul>
+      <% _.each( codepoints.digit, function( codepoint ){ %>
+        <li data-content="<%- codepoint.letter %>">
+            <%- codepoint.letter %>
+        </li>
+      <% }); %>
+      </ul>
+      <h2>Punctuation &amp; symbols</h2>
+      <ul>
+      <% _.each( codepoints.other, function( codepoint ){ %>
+        <li data-content="<%- codepoint.letter %>">
+            <%- codepoint.letter %>
+        </li>
+      <% }); %>
+      </ul>
+      <h2>Private area</h2>
+      <ul class="private-area">
+      <% _.each( codepoints.priv, function( codepoint ){ %>
+        <li data-content="U+<%- codepoint.hex %>">
+            &#x<%- codepoint.hex %>;
+        </li>
+      <% }); %>
+      </ul>
+
+    </div>
+  </div>
+</body>
+</html>
