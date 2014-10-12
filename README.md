@@ -45,15 +45,11 @@ h3 {
 
 ~~There is some icon class that come with this font:~~
 
-~~```
-<link rel="stylesheet" href="font/hicon.css">
-```~~
+~~<link rel="stylesheet" href="font/hicon.css">~~
 
 ~~In your HTML you just have to:~~
 
-~~```
-<span class="hicon mail"></span>
-```~~
+~~<span class="hicon mail"></span>~~
 
 ~~The full list of icons class are available [here](https://github.com/Hiswe/hiso-font/blob/master/font/hicon.css).~~
 
