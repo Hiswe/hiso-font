@@ -1,48 +1,60 @@
-'use strict';
+"use strict";
 
-var _           = require('lodash');
-var es          = require('event-stream');
-var gulp        = require('gulp');
-var args        = require('yargs').argv;
-var bump        = require('gulp-bump');
-var wait        = require('gulp-wait');
-var clone       = require('gulp-clone');
-var unorm       = require('unorm');
-var rename      = require('gulp-rename');
-var svgmin      = require('gulp-svgmin');
-var iconfont    = require('gulp-iconfont');
-var lazypipe    = require('lazypipe');
-var gulpFilter  = require('gulp-filter');
+var _ = require("lodash");
+var es = require("event-stream");
+var gulp = require("gulp");
+var args = require("yargs").argv;
+var bump = require("gulp-bump");
+var wait = require("gulp-wait");
+var clone = require("gulp-clone");
+var unorm = require("unorm");
+var rename = require("gulp-rename");
+var svgmin = require("gulp-svgmin");
+var iconfont = require("gulp-iconfont");
+var lazypipe = require("lazypipe");
+var gulpFilter = require("gulp-filter");
 // See this for categories
 // http://unicode.org/Public/UNIDATA/UnicodeData.txt
 var unicodeList = _.merge(
-                    require('unicode/category/Po'),
-                    require('unicode/category/Nd'),
-                    require('unicode/category/Sm'),
-                    require('unicode/category/Lu'),
-                    require('unicode/category/So'),
-                    require('unicode/category/Pd'),
-                    require('unicode/category/Ll')
-                  );
-var consolidate = require('gulp-consolidate');
+  require("unicode/category/Po"),
+  require("unicode/category/Nd"),
+  require("unicode/category/Sm"),
+  require("unicode/category/Lu"),
+  require("unicode/category/So"),
+  require("unicode/category/Pd"),
+  require("unicode/category/Ll")
+);
+var consolidate = require("gulp-consolidate");
 // SERVER
-var lr          = require('tiny-lr')();
-var open        = require('gulp-open');
-var gulpLr      = require('gulp-livereload');
-var express     = require('express');
-var connectLr   = require('connect-livereload');
+var lr = require("tiny-lr")();
+var gulpLr = require("gulp-livereload");
+var express = require("express");
+var connectLr = require("connect-livereload");
 
 /////////
 // UTILITIES
 /////////
 
-var bumpSrc = ['package.json', 'bower.json'];
+var bumpSrc = ["package.json", "bower.json"];
 
-gulp.task('bump', function () {
-  if (args.minor) return gulp.src(bumpSrc).pipe(bump({type:'minor'})).pipe(gulp.dest('./'));
-  if (args.major) return gulp.src(bumpSrc).pipe(bump({type:'minor'})).pipe(gulp.dest('./'));
-  return gulp.src(bumpSrc).pipe(bump()).pipe(gulp.dest('./'));
-});
+function bump() {
+  if (args.minor)
+    return gulp
+      .src(bumpSrc)
+      .pipe(bump({ type: "minor" }))
+      .pipe(gulp.dest("./"));
+  if (args.major)
+    return gulp
+      .src(bumpSrc)
+      .pipe(bump({ type: "major" }))
+      .pipe(gulp.dest("./"));
+  return gulp
+    .src(bumpSrc)
+    .pipe(bump())
+    .pipe(gulp.dest("./"));
+}
+
+gulp.task("bump", bump);
 
 // You can specify which unicode you're aiming in the name
 // with this file format: u0031-name.svg
@@ -57,57 +69,59 @@ function cleanName(path) {
 function prependUnicode(name) {
   var matches = /^.*_(.)$/.exec(name);
   var hexCode = getHexCode(matches[1]);
-  name = 'u' + hexCode + '-' + findUnicodeName(hexCode);
-  return name
+  name = "u" + hexCode + "-" + findUnicodeName(hexCode);
+  return name;
 }
 
 function cleanUnicode(name) {
   var matches = /^.*_([A-Za-z0-9]{4})$/.exec(name);
-  name = 'u' + matches[1] + '-' + findUnicodeName(matches[1]);
+  name = "u" + matches[1] + "-" + findUnicodeName(matches[1]);
   return name;
 }
 
 function privateUse(name) {
   var matches = /^.*_p\d+-(.+)$/.exec(name);
-  return 'HISO ' + matches[1].toUpperCase();
+  return "HISO " + matches[1].toUpperCase();
 }
 
 function getHexCode(text) {
-  var code = (typeof text === 'string') ? text.charCodeAt(0) : text;
+  var code = typeof text === "string" ? text.charCodeAt(0) : text;
   var codeHex = code.toString(16).toUpperCase();
-  while (codeHex.length < 4) { codeHex = '0' + codeHex; }
-  return codeHex
+  while (codeHex.length < 4) {
+    codeHex = "0" + codeHex;
+  }
+  return codeHex;
 }
 
 function findUnicodeName(unicode) {
-  var descriptionKey = _.findKey(unicodeList, {value: unicode.toUpperCase()});
-  if (typeof unicodeList[descriptionKey] === 'undefined') {
-    console.log('no unicode for:', unicode);
+  var descriptionKey = _.findKey(unicodeList, { value: unicode.toUpperCase() });
+  if (typeof unicodeList[descriptionKey] === "undefined") {
+    console.log("no unicode for:", unicode);
   }
-  return unicodeList[descriptionKey].name
+  return unicodeList[descriptionKey].name;
 }
 
 function isLetter(file) {
-  var fileName = /([^\/]*)\.svg$/.exec(file.path)[1]
+  var fileName = /([^\/]*)\.svg$/.exec(file.path)[1];
   // Has to normalize name as in ES5 ï.length could be 2 (i¨)
   // More on this in:
   // http://mathiasbynens.be/notes/javascript-unicode
   fileName = unorm.nfc(fileName);
-  return /_[a-zï]$/i.test(fileName)
+  return /_[a-zï]$/i.test(fileName);
 }
 
-gulp.task('unicode', function (cb) {
-  ';-:.\\/<>'.split('').forEach(function(letter){
-    console.log(letter, '    ', getHexCode(letter));
+gulp.task("unicode", function(cb) {
+  ";-:.\\/<>".split("").forEach(function(letter) {
+    console.log(letter, "    ", getHexCode(letter));
   });
   // console.log('\n');
   // '✉☎ℹ▨▧⛭⟵⟶✎✐✏⚒'.split('').forEach(function(letter){
   //   console.log(letter, '    ', getHexCode(letter));
   // });
   cb();
-})
+});
 
-function byCodepoint(a,b){
+function byCodepoint(a, b) {
   if (a.codepoint < b.codepoint) return -1;
   if (a.codepoint > b.codepoint) return 1;
   return 0;
@@ -120,19 +134,19 @@ function formatCodepoints(codepoints) {
   var other = [];
 
   codepoints.forEach(function(codepoint) {
-    codepoint.letter  = String.fromCharCode(codepoint.codepoint);
-    codepoint.hex     = getHexCode(codepoint.codepoint);
+    codepoint.letter = String.fromCharCode(codepoint.codepoint);
+    codepoint.hex = getHexCode(codepoint.codepoint);
     if (/LATIN/.test(codepoint.name)) return letter.push(codepoint);
     if (/DIGIT/.test(codepoint.name)) return digit.push(codepoint);
-    if (/HISO/.test(codepoint.name))  return priv.push(codepoint);
+    if (/HISO/.test(codepoint.name)) return priv.push(codepoint);
     other.push(codepoint);
   });
   return {
-    digit:  digit.sort(byCodepoint),
+    digit: digit.sort(byCodepoint),
     letter: letter.sort(byCodepoint),
-    priv:   priv.sort(byCodepoint),
-    other:  other.sort(byCodepoint)
-  }
+    priv: priv.sort(byCodepoint),
+    other: other.sort(byCodepoint)
+  };
 }
 
 /////////
@@ -141,10 +155,16 @@ function formatCodepoints(codepoints) {
 
 var uppercaseStream = lazypipe()
   .pipe(clone)
-  .pipe(gulpFilter, isLetter)
-  .pipe(rename, function(path){
-    path.basename = path.basename.toUpperCase();
-  });
+  .pipe(
+    gulpFilter,
+    isLetter
+  )
+  .pipe(
+    rename,
+    function(path) {
+      path.basename = path.basename.toUpperCase();
+    }
+  );
 
 /////////
 // BUILD
@@ -152,54 +172,69 @@ var uppercaseStream = lazypipe()
 
 function onCodePoints(codepoints, options) {
   // Generate html demo file
-  gulp.src('src/index.html')
-    .pipe(consolidate('lodash', {codepoints: formatCodepoints(codepoints)}))
-    .pipe(rename('index.html'))
-    .pipe(gulp.dest('./'))
+  gulp
+    .src("src/index.html")
+    .pipe(consolidate("lodash", { codepoints: formatCodepoints(codepoints) }))
+    .pipe(rename("index.html"))
+    .pipe(gulp.dest("./"));
 
   // Generate css font file
-  gulp.src('src/template.css')
-    .pipe(consolidate('lodash', {fontName: options.fontName, fontPath: './'}))
-    .pipe(rename(function nameCssFile(path) {
-      path.basename = options.fontName + '-font';
-    }))
-    .pipe(gulp.dest('dst'))
+  gulp
+    .src("src/template.css")
+    .pipe(consolidate("lodash", { fontName: options.fontName, fontPath: "./" }))
+    .pipe(
+      rename(function nameCssFile(path) {
+        path.basename = options.fontName + "-font";
+      })
+    )
+    .pipe(gulp.dest("dst"));
 }
 
-gulp.task('min', function(){
-  return gulp.src('src/**/*.svg')
+function minifySvg() {
+  return gulp
+    .src("src/**/*.svg")
     .pipe(svgmin())
-    .pipe(gulp.dest('src'))
-});
+    .pipe(gulp.dest("src"));
+}
+
+gulp.task("min", minifySvg);
 
 // Generate font files
 
-gulp.task('dark', ['min'], function(){
-  var src = gulp.src('src/dark/*.svg')
-  var maj = src.pipe(uppercaseStream())
-  es.merge(src, maj).pipe(rename(cleanName))
-    .pipe(iconfont({ fontName: 'hiso-dark' }).on('codepoints', onCodePoints))
-    .pipe(gulp.dest('dst'))
-});
+function buildDark() {
+  var src = gulp.src("src/dark/*.svg");
+  var maj = src.pipe(uppercaseStream());
+  return es
+    .merge(src, maj)
+    .pipe(rename(cleanName))
+    .pipe(iconfont({ fontName: "hiso-dark" }).on("codepoints", onCodePoints))
+    .pipe(gulp.dest("dst"));
+}
+function buildPlain() {
+  var src = gulp.src("src/plain/*.svg");
+  var maj = src.pipe(uppercaseStream());
+  return es
+    .merge(src, maj)
+    .pipe(rename(cleanName))
+    .pipe(iconfont({ fontName: "hiso-plain" }).on("codepoints", onCodePoints))
+    .pipe(gulp.dest("dst"));
+}
+function buildBright() {
+  var src = gulp.src("src/bright/*.svg");
+  var maj = src.pipe(uppercaseStream());
+  return es
+    .merge(src, maj)
+    .pipe(rename(cleanName))
+    .pipe(iconfont({ fontName: "hiso-bright" }).on("codepoints", onCodePoints))
+    .pipe(gulp.dest("dst"));
+}
 
+const build = gulp.series(
+  minifySvg,
+  gulp.parallel(buildDark, buildPlain, buildBright)
+);
 
-gulp.task('plain', ['min'], function(){
-  var src = gulp.src('src/plain/*.svg')
-  var maj = src.pipe(uppercaseStream())
-  es.merge(src, maj).pipe(rename(cleanName))
-    .pipe(iconfont({ fontName: 'hiso-plain' }).on('codepoints', onCodePoints))
-    .pipe(gulp.dest('dst'))
-});
-
-gulp.task('bright', ['min'], function(){
-  var src = gulp.src('src/bright/*.svg')
-  var maj = src.pipe(uppercaseStream())
-  es.merge(src, maj).pipe(rename(cleanName))
-    .pipe(iconfont({ fontName: 'hiso-bright' }).on('codepoints', onCodePoints))
-    .pipe(gulp.dest('dst'))
-});
-
-gulp.task('build', ['dark', 'plain', 'bright']);
+gulp.task("build", build);
 
 /////////
 // SERVER
@@ -213,19 +248,16 @@ var startExpress = function startExpress() {
   app.listen(3000);
 };
 
-gulp.task('express', function(cb){
+function launchExpress(cb) {
   startExpress();
   lr.listen(35729);
   cb();
-});
+}
 
-gulp.task('server', ['express'], function(){
-  gulp.src('./README.md').pipe(wait(1000)).pipe(open('', {url: "http://localhost:3000"}));
-});
+gulp.task("server", launchExpress);
 
 /////////
 // DOC
 /////////
 
 // none for now :P
-
